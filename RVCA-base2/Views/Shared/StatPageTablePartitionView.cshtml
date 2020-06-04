@@ -1,0 +1,114 @@
+﻿@using RVCA_base2.Helpers
+@model ExcelWorker.Excel_model_v3.StatTable
+@{
+    string chartId = "chart" + Model.startRow;
+    string tableId = "table" + Model.startRow;
+    string rowtableId = "rowtable" + Model.startRow;
+    string rowTableContainerId = "row-table-container" + Model.startRow;
+
+    string fieldsString = ViewBag.fields;
+}
+
+
+@* //график *@
+<div style="margin-top:10px; margin-bottom:10px">
+    <canvas id="@chartId" width="400" height="300"></canvas>
+</div>
+
+<script>
+    var ctx = document.getElementById("@chartId").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: @Html.Raw(Model.GetFullChartData()),
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+
+            });
+
+</script>
+
+@*//таблица*@
+
+<div style="margin-top:10px; margin-bottom:10px">
+    <table id="@tableId" class="display" style="width:100%"></table>
+</div>
+<script>
+    @{
+        var jsData = Model.GetTableDataForJs();
+        string filtersValName = "filters" + tableId;
+
+     }
+
+    var @filtersValName = @Html.Raw(jsData.GetFilters());
+    $(document).ready(function () {
+            $('#@tableId').DataTable({
+                data: @Html.Raw(jsData.GetData()),
+                columns: @Html.Raw(jsData.GetColumns()),
+                searching: false,
+                paging: false,
+                info: false,
+                columnDefs: [{
+                    targets: '_all',
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        if (@{@filtersValName}[row][col] != null) {
+                            $(td).addClass('row-data');
+                        }
+                    }
+                }]
+            });
+    });
+
+    var selectedCell_@{@tableId} = null;
+    var doOutputTable = '@PageBuilderHelper.GetConfigValue("DetailTabesVersion")';   
+        
+    $('#@tableId').on('click', 'tbody td', function () {
+
+                    if (doOutputTable != '1') {
+                        return;
+                    }
+
+                    var table = $('#@tableId').DataTable();
+
+                    var row = table.cell(this).index().row;
+                    var col = table.cell(this).index().column;
+
+                    var fields = "@fieldsString";
+                    var filters = @{@filtersValName}[row][col];
+
+        if (filters == null || fields == "") return;
+
+        $(selectedCell_@{@tableId}).css("background-color", "");
+        selectedCell_@{@tableId} = $(this);
+        $(this).css("background-color", "rgba(75, 192, 192, 0.4)");
+
+        $.ajax({
+    url: '/data/gettablebyfilters',
+            data: {
+            "fields": fields,
+                "filters": filters
+            },
+            type: 'GET',
+            dataType: 'json',
+            success: function (ob) {
+            InitDataTable(ob, '@rowtableId');
+        }
+    });
+    });
+
+</script>
+
+@* // row data *@
+
+<div id="@rowTableContainerId" style="margin-top:30px; margin-bottom:30px">
+    <table id="@rowtableId" class="display" style="width:100%"></table>
+</div>
+

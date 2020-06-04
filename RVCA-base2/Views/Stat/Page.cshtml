@@ -1,0 +1,65 @@
+﻿@model ExcelWorker.Excel_model_v3.ExcelStatPage
+@{
+    ViewBag.Title = "Page";
+}
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/data-table.js"></script>
+<style>
+    .row-data {
+        cursor: pointer;
+    }
+
+        .row-data:hover {
+            background-color: lightgray;
+        }
+</style>
+
+@*<div  class="col-md-12" >*@
+@* Из-за боотстрапа ломается прокрутка таблицы. Не понятно почему (( *@
+<div>
+    <div class="alert alert-info">
+        <ul>
+            <li>Чтобы посмотреть подробные данные, нажмите на сообтветствующее число в таблице под графиком</li>
+            <li>Некоторые числа могут не иметь подробных данных</li>
+            <li>В подробных данных отображаются только публичные данные</li>
+        </ul>
+    </div>
+    @if (Model != null)
+    {
+        List<int> startRowsNumbers = new List<int>();
+
+        startRowsNumbers.AddRange(Model.texts.GetStartRows());
+        startRowsNumbers.AddRange(Model.tables.GetStartRows());
+        startRowsNumbers = startRowsNumbers.OrderBy(x => x).ToList();
+
+        var fields = Model.GetFieldsFromSettings();
+        ViewBag.fields = fields;
+
+        foreach (var r in startRowsNumbers)
+        {
+            var text = Model.texts.GetTextByStartRow(r);
+            var table = Model.tables.GetTableByStartRow(r);
+
+            if (text != null)
+            {
+                @Html.Partial("StatPageTextPartitionView", text);
+            }
+            if (table != null)
+            {
+                @Html.Partial("StatPageTablePartitionView", table);
+            }
+
+        }
+    }
+    else
+    {
+        <p class="bg-warning" style="margin-top:45px; padding:15px">Не удалось загрузить данные</p>
+    }
+</div>

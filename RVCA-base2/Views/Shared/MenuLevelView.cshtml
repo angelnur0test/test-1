@@ -1,0 +1,36 @@
+﻿@model ExcelWorker.Excel_model_v3.MenuNode
+@{
+    string className = $"level{Model.item.level}";
+
+    string titleStyle = "";
+
+    if (Model.item.hasStatPage == false && Model.subNodes.Count > 0)
+    {
+        titleStyle = "menu-title";
+    }
+    else if (Model.item.hasStatPage == false && Model.subNodes.Count == 0)
+    {
+        titleStyle = "gray-elemnt";
+    }
+}
+
+@if (Model.item.hasStatPage == true)
+{
+    <a class="@className" href="page/@Model.item.link">@Model.item.title</a>
+}
+else
+{
+    <div class="@className @titleStyle">@Model.item.title</div>
+}
+
+@if (Model.subNodes.Count > 0)
+{
+    <ul>
+        @foreach (var node in Model.subNodes)
+        {
+            <li>
+                @Html.Partial("MenuLevelView", node)
+            </li>
+        }
+    </ul>
+}

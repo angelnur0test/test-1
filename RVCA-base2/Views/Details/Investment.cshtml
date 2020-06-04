@@ -1,0 +1,62 @@
+﻿@using RVCA_base2.Models
+@model InvestmentData
+
+@{
+    /**/
+
+    ViewBag.Title = "Investment";
+
+    System.Data.DataRow[] funds = ViewBag.funds;
+}
+
+@if (Model == null)
+{
+    <p class="bg-warning" style="padding: 15px">Данные по инвестиции не найдены</p>
+}
+else
+{
+    <link href="/Content/level4.css" rel="stylesheet" />
+
+    <h1 class="page-header">Сделка</h1>
+
+    <p class="alert alert-info">Страница находится в разработке</p>
+
+    <h2>@Model.ProjectName</h2>
+
+    <h3>Информация о компании</h3>
+    <table class="table table-striped">
+        <tr><td>Отрасль компании</td><td>@Model.Otrasl</td></tr>
+        <tr><td>Регион</td><td>@Model.Region</td></tr>
+    </table>
+
+    <h3>Детали инвестиции</h3>
+    <table class="table table-striped">
+        <tr><td>Описание сделки</td><td>@Model.Description</td></tr>
+        <tr><td>Объем сделки</td><td>@Model.InvestmentVolume</td></tr>
+        <tr><td>Стадия развития</td><td>@Model.Stage</td></tr>
+        <tr><td>Номер раунда</td><td>@Model.Round</td></tr>
+        <tr><td>PEVC</td><td>@Model.DealType</td></tr>
+        <tr><td>Синдицированная</td><td>@Model.Sindicated</td></tr>
+        <tr><td>Follow-on</td><td>@Model.FollowOn</td></tr>
+    </table>
+
+    <h4>Подробная информация</h4>
+
+    <h5>Инвесторы</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Наименование инвестора</th>
+                <th>Тип инвестора</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>@Model.InvestorName</td>
+                <td>@Model.InvestorType</td>
+            </tr>            
+
+        </tbody>
+    </table>
+}

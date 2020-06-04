@@ -1,0 +1,37 @@
+﻿@using EFDataLayer
+@using RVCA_base2.Controllers
+@model List<news>
+        @foreach (var item in Model)
+        {
+            <div class="blog-box row">
+                <div class="col-md-4" style="padding-left:25px">
+                    <div class="post-media" style="margin:15px">
+                        <a href="/news/view/@item.id/">
+                            <img src="/images/news/@item.previewPicture" class="img-fluid">
+                            <div class="hovereffect"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="blog-meta big-meta col-md-8">
+                    <div class="date" style="margin-bottom:5px;">
+                        <small>
+                            <b>@item.publicationDate.Value.ToString("dd.MM.yyyy")</b>
+                        </small>
+                    </div>
+                    <h4><a href="/news/view/@item.id/"><b>@item.title</b></a></h4>
+                    <p>
+                        @if (item.newsText.Length > 300)
+                        {
+                            @Html.Raw(item.newsText.Substring(0, 300)) @:...
+                        }
+                        else
+                        {
+                            @Html.Raw(item.newsText)
+                        }
+                    </p>
+                    <small class="firstsmall"><a class="bg-orange" href="/news/?tag=@item.newsTag">@item.newsTag</a></small>
+                </div>
+            </div>
+            <br />
+
+        }

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Investors";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/data-table.js"></script>
+
+<h2>Инвесторы</h2>
+
+<div class="col-md-12" style="margin-top:30px; margin-bottom:30px">
+    <table id="table1" class="display" style="width:100%"></table>
+</div>
+
+<script>
+
+    var data = [
+        ["1", "investor/1", "Инвестор №1", "", "", "", ""],
+        ["2", "investor/2", "Инвестор №2", "", "", "", ""],
+        ["3","investor/3", "Инвестор №3", "", "", "", ""],
+        ["4","investor/4", "Инвестор №4", "", "", "", ""],
+        ["5","investor/5", "Инвестор №5", "", "", "", ""],
+        ["6","investor/6", "Инвестор №6", "", "", "", ""]
+    ];
+
+    var columns = [
+        { title: '#' },
+        { title: 'Details' },
+        { title: 'Название' },
+        //{ title: 'Тип инвестора' },
+        { title: 'Число инвестиций' },
+        { title: 'Расположение' },
+        { title: 'Стадии' }
+    ];
+
+    $('#table1').DataTable({
+        data: data,
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        columns: columns,
+        columnDefs: [
+            {
+                targets: [1],
+                visible: false
+            },
+            {
+                targets: [2],
+                render: function (data, type, row, meta) {
+                    return '<a href="/details/' + row[1] + '" target="_blank">' + data + '</a>';
+                }
+            }
+        ]
+    });
+</script>
+
+@*<div class="col-md-12" style="margin-top:30px; margin-bottom:30px">
+    <h3>Типы инвесторов</h3>
+    <ul>
+        <li>
+            Angel/Incubators
+            <ul>
+                <li>Angel Group</li>
+                <li>Angel (individual)</li>
+                <li>Accelerator/Incubator</li>
+            </ul>
+        </li>
+        <li>
+            Venture Capital
+            <ul>
+                <li>Venture Capital</li>
+                <li>Corporate Venture Capital</li>
+            </ul>
+        </li>
+
+        <li>
+            Private Equity
+            <ul>
+                <li>PE/Buyout</li>
+                <li>Growth/Expansion</li>
+                <li>Mezaninne</li>
+            </ul>
+        </li>
+
+        <li>
+            Strategic Acquirers
+            <ul>
+                <li>Corporation</li>
+                <li>Corporate Development</li>
+                <li>PE-Backed Company</li>
+                <li>VC-Backed Company</li>
+            </ul>
+        </li>
+
+        <li>
+            Other Investors Type
+            <ul>
+                <li>Business Development Company</li>
+                <li>Family Office</li>
+                <li>Fund of Funds</li>
+                <li>Government</li>
+                <li>Hedge Fund</li>
+                <li>Infrastructure</li>
+                <li>Investment Bank</li>
+                <li>Lender/Debt Provider</li>
+                <li>Limited Partner</li>
+            </ul>
+        </li>
+        <li>Other</li>
+        <li>Merchant Banking Firm</li>
+        <li>Real Estate</li>
+        <li>SBIC</li>
+        <li>Secondary Buyer</li>
+        <li>Sovereign Wealth Fund</li>
+        <li>University</li>
+    </ul>
+</div>*@

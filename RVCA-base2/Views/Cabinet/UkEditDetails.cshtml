@@ -1,0 +1,38 @@
+﻿@using RVCA_base2.Models;
+@model CabinetUkData
+@{
+    ViewBag.Title = "Личный кабинет УК - Редактирование подробной информации";
+}
+<style>
+        table tr {
+        padding-bottom:5px;
+    }
+
+     @@media screen and (max-width: 650px) {
+
+                table.controlsTable tr {
+                    display: block !important;
+                }
+
+    }
+</style>
+
+    <form action="/cabinet/uk/@Model.id/editdetails/" method="post">
+        <table class="controlsTable" width="100%">
+            <tr>
+                <td class="col-sm-3">Страна расположения головного офиса:</td>
+                <td class="col-sm-3"><input type="text" name="HeadOfficeCountry" id="HeadOfficeCountry" value="@Model.HeadOfficeCountry" /></td>
+
+                <td class="col-sm-3">Юрисдикция:</td>
+                <td class="col-sm-3"><input type="text" name="Jurisdiction" id="Jurisdiction" value="@Model.Jurisdiction" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="Сохранить" class="btn btn-info" onclick="testVersionReminder();" />
+    </form>
+
+    <script>
+        function testVersionReminder()
+        {
+            alert('Внесенные изменения в режиме Прототипа - не сохраняются!');
+        }
+    </script>

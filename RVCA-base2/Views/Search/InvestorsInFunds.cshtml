@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Investors in funds";
+
+    string fields = ViewBag.searchResultFields;
+    string tableName = ViewBag.tableName;
+    string rowTableId = "search-results-table";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/data-table.js"></script>
+<script src="~/Scripts/search-tables.js"></script>
+
+<style>
+    select {
+        overflow: auto;
+    }
+
+    .no-transition {
+        transition: none !important;
+    }
+</style>
+
+<h2>Инвесторы в фонды</h2>
+
+<form id="search-form" class="col-md-12" onsubmit="return false"></form>
+
+<div class="col-md-12" style="margin-top:30px; margin-bottom:30px">
+    <table id="@rowTableId" class="display" style="width:100%"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        submitForm('@tableName','@rowTableId','@fields');
+    });
+</script>
+
+
+
+

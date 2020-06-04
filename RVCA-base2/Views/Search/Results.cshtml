@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "Investors";
+
+    string fields = ViewBag.searchResultFields;
+    string tableName = ViewBag.tableName;
+    string rowTableId = "search-results-table";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/data-table.js"></script>
+<script src="~/Scripts/search-tables.js"></script>
+
+<style>
+    select {
+        overflow: auto;
+    }
+
+    .no-transition {
+        transition: none !important;
+    }
+</style>
+
+<h2>Результаты управления</h2>
+
+<form id="search-form" class="col-md-12" onsubmit="return false">
+    <div class="container">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fund-name">Название фонда содержит</label><br />
+                <input type="text" class="form-control" id="fund-name" name="Название фонда">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="pevc">PE/VC</label>
+
+                @*<select class="form-control" size="4" id="pevc" name="pevc">
+            <option value="" selected></option>
+            <option value="VC">VC-фонд</option>
+            <option value="PE">PE-фонд</option>
+            <option value="Неизвестно">Неизвестно</option>
+        </select>*@
+
+                <div class="radio"><label><input type="radio" name="pevc" checked value="">Все фонды</label></div>
+                <div class="radio"><label><input type="radio" name="pevc" value="Венчурный">VC-фонды</label></div>
+                <div class="radio"><label><input type="radio" name="pevc" value="Прямой">PE-фонды</label></div>
+                
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="ICT">Отраслевые предпочтения</label>
+
+                @*<select class="form-control" size="5" id="ICT" name="ICT">
+            <option value="" selected></option>
+            <option value="ИКТ">ИКТ</option>
+            <option value="Смешанные">Смешанные</option>
+            <option value="Реальные">Реальные</option>
+            <option value="Неизвестно">Неизвестно</option>
+        </select>*@
+
+                <div class="radio"><label><input type="radio" name="ICT" checked value="">Любые</label></div>
+                <div class="radio"><label><input type="radio" name="ICT" value="ИКТ">ИКТ</label></div>
+                <div class="radio"><label><input type="radio" name="ICT" value="Смешанные отраслевые предпочтения">Смешанные</label></div>
+                <div class="radio"><label><input type="radio" name="ICT" value="Реальные">Реальные</label></div>
+                
+            </div>
+        </div>
+
+        <div class="col-md-12" style="margin-top:15px;margin-bottom:15px;">
+            <a href="#more-fields" onclick="if ($('#more-fields').is(':visible')) { $('#more-fields').hide(); } else { $('#more-fields').show()} ">Дополнительные поля</a>
+        </div>
+
+
+        <div id="more-fields" style=" display:none">
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="seed">Посевной фонд</label>
+                    @*<select class="form-control" size="4" id="seed" name="seed">
+                        <option value="" selected></option>
+                        <option value="Посевной">Посевной</option>
+                        <option value="Не посевной">Не посевной</option>
+                        <option value="Неизвестно">Неизвестно</option>
+                    </select>*@
+
+                    <div class="radio"><label><input type="radio" name="seed" checked value="">Любой</label></div>
+                    <div class="radio"><label><input type="radio" name="seed" value="Посевной">Посевной</label></div>
+                    <div class="radio"><label><input type="radio" name="seed" value="Не посевной">Не посевной</label></div>
+              @*      <div class="radio"><label><input type="radio" name="seed" value="Неизвестно">Неизвестно</label></div>*@
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="government">Госучастие</label>
+                    @*<select class="form-control" size="4" id="government" name="Government">
+                        <option value="" selected></option>
+                        <option value="Частный">Частный</option>
+                        <option value="С госучастием">С госучастием</option>
+                        <option value="Неизвестно">Неизвестно</option>
+                    </select>*@
+
+                    <div class="radio"><label><input type="radio" name="government" checked value="">Любой</label></div>
+                    <div class="radio"><label><input type="radio" name="government" value="Частный">Частный</label></div>
+                    <div class="radio"><label><input type="radio" name="government" value="С госучастием">С госучастием</label></div>
+             @*       <div class="radio"><label><input type="radio" name="government" value="Неизвестно">Неизвестно</label></div>*@
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="corporate">Корпоративный</label>
+                    @*<select class="form-control" size="4" id="corporate" name="corporate">
+                        <option value="" selected></option>
+                        <option value="Корпоративный">Корпоративный</option>
+                        <option value="Независимый">Независимый</option>
+                        <option value="Неизвестно">Неизвестно</option>
+                    </select>*@
+
+                    <div class="radio"><label><input type="radio" name="corporate" checked value="">Любой</label></div>
+                    <div class="radio"><label><input type="radio" name="corporate" value="Корпоративный">Корпоративный</label></div>
+                    <div class="radio"><label><input type="radio" name="corporate" value="Независимый">Независимый</label></div>
+                    @*       <div class="radio"><label><input type="radio" name="government" value="Неизвестно">Неизвестно</label></div>*@
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="region">Регион</label>
+                    <select class="form-control" id="region" name="Регион">
+                        <option value=""></option>
+                        <option value="Центральный">Центральный</option>
+                        <option value="Северо-Западный">Северо-Западный</option>
+                        <option value="Приволжский">Приволжский</option>
+                        <option value="Южный">Южный</option>
+                        <option value="Северо-Кавказский">Северо-Кавказский</option>
+                        <option value="Уральский">Уральский</option>
+                        <option value="Сибирский">Сибирский</option>
+                        <option value="Дальневосточный">Дальневосточный</option>
+                        <option value="Неизвестно">Неизвестно</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-12">
+            <div class="search-element">
+                <button class="btn btn-primary" onclick="submitForm('@tableName','@rowTableId','@fields')">Показать</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="col-md-12" style="margin-top:30px; margin-bottom:30px">
+    <table id="@rowTableId" class="display" style="width:100%"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        submitForm('@tableName','@rowTableId','@fields');
+    });
+</script>
+
+
+
+

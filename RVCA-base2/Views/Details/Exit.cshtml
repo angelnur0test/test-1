@@ -1,0 +1,115 @@
+﻿@model System.Data.DataRow
+@using RVCA_base2.Models
+
+@{
+    /**/
+
+    ViewBag.Title = "Exit";
+
+    System.Data.DataRow[] funds = ViewBag.funds;
+}
+
+@if (Model == null)
+{
+    <p class="bg-warning" style="padding: 15px">Данные по выходу не найдены</p>
+}
+else
+{
+
+    <link href="/Content/level4.css" rel="stylesheet" />
+
+    <h1 class="page-header">Выход</h1>
+
+    <p class="alert alert-info">Страница находится в разработке</p>
+
+    <h2>@Model["Название компании"]</h2>
+
+    <h3>Информация о компании</h3>
+    <table class="table table-striped">
+        <tr><td>Навзание компании</td><td><a href="/details/company/@DetailsHelter.GetFieldWithNoData(Model, "Номер компании")">@DetailsHelter.GetFieldWithNoData(Model, "Название компании")</a></td></tr>
+        <tr><td>Отрасль компании</td><td>@DetailsHelter.GetFieldWithNoData(Model, "Отрасль")</td></tr>
+        <tr><td>Расположение компании</td><td>@Html.Raw(DetailsHelter.GetFieldsToBrList(@Model, new[] { "Страна", "Регион" }))</td></tr>
+    </table>
+
+    <h3>Детали выхода</h3>
+    <table class="table table-striped">
+        <tr><td>Описание выхода</td><td><span style="color:lightgray">Текст</span></td></tr>
+        <tr><td>Дата сделки</td><td>@Model["Месяц"] @Model["Год выхода"]</td></tr>
+        <tr><td>Дата анонсирования выхода</td><td><span style="color:lightgray">Дата</span></td></tr>
+        <tr><td>Объем выхода</td><td><span style="color:lightgray">Цифра</span></td></tr>
+        <tr><td>Стадия компании</td><td>@DetailsHelter.GetFieldWithNoData(Model, "Стадия")</td></tr>
+        <tr><td>Номер раунда</td><td><span style="color:lightgray">Текст</span></td></tr>
+        <tr><td>Способ выхода </td><td>@DetailsHelter.GetFieldWithNoData(Model, "Способ выхода")</td></tr>
+        <tr><td>Тип выхода</td><td>@DetailsHelter.GetFieldWithNoData(Model, "Тип выхода")</td></tr>
+        <tr><td>IRR</td><td><span style="color:lightgray">Цифра</span></td></tr>
+        <tr><td>Оценка объема сделки</td><td><span style="color:lightgray">Да/Нет</span></td></tr>
+        <tr><td>Статус сделки</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Поставщики услуг</td><td><span style="color:lightgray">Текст</span></td></tr>
+
+    </table>
+
+    <h4>Участники сделки</h4>
+
+    <h5>Продавцы</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Наименование продавца</th>
+                <th>Тип инвестора</th>
+                <th>Расположение инвестора</th>
+                <th>Доля после продажи</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (funds.Length == 0)
+            {
+                <tr>
+                    <td><span style="color:lightgray">Текстовый блок с гиперссылкой</span></td>
+                    <td><span style="color:lightgray">Текстовый блок</span></td>
+                    <td><span style="color:lightgray">Текстовый блок</span></td>
+                    <td><span style="color:lightgray">Число (%)</span></td>
+                </tr>
+
+            }
+            else
+            {
+
+                foreach (var row in funds)
+                {
+                    <tr>
+                        @if (@DetailsHelter.GetFieldWithNoData(row, "Тип инвестора 2") == "Фонд")
+                        {
+                            <td><a href="/details/@DetailsHelter.GetFieldWithNoData(row, "Details")">@DetailsHelter.GetFieldWithNoData(row, "Название фонда")</a></td>
+                        }
+                        else
+                        {
+                            <td>@DetailsHelter.GetFieldWithNoData(row, "Название фонда")</td>
+                        }
+                        <td>@DetailsHelter.GetFieldWithNoData(row, "Тип инвестора 2")</td>
+                        <td><span style="color:lightgray">Текстовый блок</span></td>
+                        <td><span style="color:lightgray">Число (%)</span></td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+    <h5>Покупатели</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Наименование инвестора</th>
+                <th>Тип продавца</th>
+                <th>Расположение продавца</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текстовый блок с гиперссылкой</span></td>
+                <td><span style="color:lightgray">Текстовый блок</span></td>
+                <td><span style="color:lightgray">Текстовый блок</span></td>
+            </tr>
+        </tbody>
+    </table>
+}

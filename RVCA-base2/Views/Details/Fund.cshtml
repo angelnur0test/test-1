@@ -1,0 +1,71 @@
+﻿@model FundData
+@using RVCA_base2.Models
+
+@{
+
+    ViewBag.Title = "Fund";
+
+}
+
+@if (Model == null)
+{
+    <p class="bg-warning" style="padding: 15px">Данные по инвестору не найдены</p>
+}
+else
+{
+
+    <link href="/Content/level4.css" rel="stylesheet" />
+
+    <h1 class="page-header">Фонд</h1>
+
+    <p class="alert alert-info">Страница находится в разработке</p>
+
+    <h2>@Model.Title</h2>
+    <a href="/details/result/@Model.id">Результаты управления</a>
+
+    <h3>Основные сведения</h3>
+    <table class="table table-striped">
+        <tr><td>Сайт</td><td><a href="@Model.WebSite">@Model.WebSite</a></td></tr>
+        <tr><td>Юрисдикция</td><td>@Model.Jurisdiction</td></tr>
+        <tr><td>Тип инвестора </td><td>@Model.InvestorType</td></tr>
+        <tr><td>Тип фонда</td><td>@Model.FundType</td></tr>
+        <tr><td>Тип фонда PE/VC</td><td>@Model.FundType</td></tr>
+        <tr><td>Тип фонда с госкапиталом/без госкапитала</td><td>@Model.WithGovernment</td></tr>
+        <tr><td>Тип фонда посевной/не посевной</td><td>@Model.SeedOrNot</td></tr>
+        <tr><td>Тип фонда ИКТ/Не ИКТ</td><td>@Model.IKTOrNot</td></tr>
+    </table>
+
+    <h3>Контакты</h3>
+    <table class="table table-striped">
+        <tr><td>Регион</td><td>@Model.HeadOfficeCountry</td></tr>
+    </table>
+
+    <h3>Основные характеристики</h3>
+    <table class="table table-striped">        
+        <tr><td>Тип фонда PE/VC</td><td>@Model.FundType</td></tr>
+        <tr><td>Тип фонда с госкапиталом/без госкапитала</td><td>@Model.WithGovernment</td></tr>
+        <tr><td>Тип фонда посевной/не посевной</td><td>@Model.SeedOrNot</td></tr>
+        <tr><td>Тип фонда ИКТ/Не ИКТ</td><td>@Model.IKTOrNot</td></tr>
+    </table>
+
+    <h4>Инвестиционная стратегия</h4>
+    <table class="table table-striped">
+        <tr><td>Специализация фонда</td><td>@Html.Raw(Model.FundSpecialization)</td></tr>
+    </table>
+
+    <h4>Географические предпочтения</h4>
+    <table class="table table-striped">
+        <tr><td>Географический фокус</td><td>@Html.Raw(Model.GeographicFocus)</td></tr>
+    </table>
+
+    <h4>Отраслевые предпочтения</h4>
+    <table class="table table-striped">
+        <tr><td>Отраслевые предпочтения</td><td>@Html.Raw(Model.OtraslPreference)</td></tr>
+    </table>
+
+    <h4>Предпочтения по стадиям</h4>
+    <table class="table table-striped">
+        <tr><td>Предпочтения по стадиям</td><td>@Html.Raw(Model.StagePreference)</td></tr>
+    </table>
+
+}

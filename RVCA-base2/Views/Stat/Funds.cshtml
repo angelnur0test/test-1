@@ -1,0 +1,142 @@
+﻿@using RVCA_base2.Helpers
+@model  ExcelWorker.Excel_model_v3.ExcelStatPage
+@{
+    ViewBag.Title = "Статистика: Рынок инвестиций фондов";
+}
+<style>
+    select {
+        overflow: auto;
+    }
+
+    .no-transition {
+        transition: none !important;
+    }
+</style>
+
+<h2>Рынок инвестиций фондов PE&VC</h2>
+
+<div id="more-fields" class="row">
+    <form id="search-form" class="col-md-10" action="/stat/funds/" method="post">
+        <div>
+            <div class="row">
+                <div class="col-md-3" style="height:100px;padding:5px;">
+                    <div class="align-bottom" style="height:100px;">
+                        <div style="height:50px;font-weight:bold;">
+                            По типу инвестиций<br />
+                        </div>
+                        <select class="form-control" id="filter_fundType" name="filter_fundType">
+                            <option value="PEVC" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundType", "PEVC", true)>PE и VC инвестиции</option>
+                            <option value="PE" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundType", "PE")>PE-инвестиции</option>
+                            <option value="VC" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundType", "VC")>VC-инвестиции</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:100px;padding:5px;">
+                    <div class="align-bottom" style="height:100px;">
+                        <div style="height:50px;font-weight:bold;">
+                            С участием фондов по источнику капитала<br />
+                        </div>
+                        <select class="form-control" id="filter_capitalSource" name="filter_capitalSource">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_capitalSource", "1", true)>Фонды с участием гос. капитала и частные</option>
+                            <option value="3" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_capitalSource", "3")>С участием фондов с гос. участием  (и без гос. участия)</option>                           
+                            <option value="2" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_capitalSource", "2")>Фонды с участием гос. капитала</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:100px;padding:5px;">
+                    <div class="align-bottom" style="height:100px;">
+                        <div style="height:50px;font-weight:bold;">
+                            С участием корпоративных фондов<br />
+                        </div>
+                        <select class="form-control" id="filter_isCorporate" name="filter_isCorporate">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_isCorporate", "1")>С участием только корпоративных фондов</option>
+                            <option value="3" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_isCorporate", "3")>С участием корпоративных фондов (и независимых)</option>
+                            <option value="2"  @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_isCorporate", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:100px;padding:5px;">
+                    <div class="form-group">
+                        <div style="height:50px;font-weight:bold;">
+                            С участием посевных фондов<br />
+                        </div>
+                        <select class="form-control" id="filter_isSeed" name="filter_isSeed">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_isSeed", "1")>Да</option>
+                            <option value="2"  @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_isSeed", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="height:120px;">
+                    <div class="form-group">
+                        <div style="height:70px;font-weight:bold;">
+                            По отраслям (компаний)<br />
+                        </div>
+                        <select class="form-control" id="filter_Otrasl" name="filter_Otrasl">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundSize", "1")>Да</option>
+                            <option value="2"  @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundSize", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:120px;">
+                    <div class="form-group">
+                        <div style="height:70px;font-weight:bold;">
+                            По стадиям (компаний)<br />
+                        </div>
+                        <select class="form-control" id="filter_Stage" name="filter_Stage">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Otrasl", "1")>Да</option>
+                            <option value="2"  @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Otrasl", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:120px;">
+                    <div class="form-group">
+                        <div style="height:70px;font-weight:bold;">
+                            По регионам (компаний)<br />
+                        </div>
+                        <select class="form-control" id="filter_Regions" name="filter_Regions">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Regions", "1")>Да</option>
+                            <option value="2"  @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Regions", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="search-element">
+                    <button type="submit" class="btn btn-primary">Показать</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        //$("#fund_type").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_fundType").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_capitalSource").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_isCorporate").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_isSeed").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_Stage").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_Otrasl").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_Regions").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+    });
+
+</script>
+
+<br />
+<br />
+<div id="more-fields" class="row">
+    @if (Model != null)
+    {
+        ExcelWorker.Excel_model_v3.ExcelStatPage data = (Model as ExcelWorker.Excel_model_v3.ExcelStatPage);
+        @Html.Partial("Page", data);
+    }
+</div>
+
+
+
+
+

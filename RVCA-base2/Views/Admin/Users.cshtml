@@ -1,0 +1,43 @@
+﻿@using RVCA_base2.Models
+@model List<MyUser>
+@{
+    ViewBag.Title = "Users";
+
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<h2>Пользователи</h2>
+
+<script>
+    $(document).ready(function () {
+        $('#usersTable').DataTable();
+    });
+</script>
+
+<table id="usersTable" class="display">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Роли</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.userName</td>
+                <td>
+                    @foreach (var role in @user.userRoles)
+                    {
+                        <span>@role</span>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,12 @@
+﻿@using EFDataLayer
+@using RVCA_base2.Controllers
+@model news
+
+<table>
+        <tr><td><h3>@Model.title</h3></td></tr>
+        <tr><td><i>@Model.publicationDate</i></td></tr>
+        <tr><td>
+            @Html.Raw(Model.newsText);
+        </td></tr>
+        <tr><td>&nbsp;</td></tr>
+</table>

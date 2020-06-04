@@ -1,0 +1,137 @@
+﻿@model System.Data.DataRow
+@using RVCA_base2.Models
+@{
+    ViewBag.Title = "Investor";
+}
+
+<link href="/Content/level4.css" rel="stylesheet" />
+
+<h1 class="page-header">Инвестор в фонды</h1>
+
+<p class="alert alert-info">Страница находится в разработке</p>
+
+<h2>@Model["Название"]</h2>
+
+<h3>Общая информация</h3>
+<table class="table table-striped">
+    <tr><td>	Наименование поля	</td><td><span style="color:lightgray">	Формат данных	</span></td></tr>
+    <tr><td>	Название	</td><td><span style="color:lightgray">	Текстовое поле	</span></td></tr>
+    <tr><td>	Описание	</td><td><span style="color:lightgray">	Текстовое поле	</span></td></tr>
+    <tr><td>	Сайт	</td><td><span style="color:lightgray">	Текстовое поле	</span></td></tr>
+    <tr><td>	Юридическое название	</td><td><span style="color:lightgray">	Текстовое поле	</span></td></tr>
+    <tr><td>	Юрисдикция	</td><td><span style="color:lightgray">	Текстовое поле	</span></td></tr>
+    <tr><td>	Тип LP 	</td><td><span style="color:lightgray">	Текст из закрытого списка	</span></td></tr>
+    <tr><td>	Капитал под управлением	</td><td><span style="color:lightgray">	Число	</span></td></tr>
+    <tr><td>	Географический охват	</td><td><span style="color:lightgray">	Текст из закрытого списка	</span></td></tr>
+    <tr><td>	Географический фокус	</td><td><span style="color:lightgray">	Текст из закрытого списка	</span></td></tr>
+    <tr><td>	Региональные предпочтения	</td><td><span style="color:lightgray">	Текст из закрытого списка	</span></td></tr>
+    <tr><td>	Индустриальный фокус	</td><td><span style="color:lightgray">	Текст из закрытого списка	</span></td></tr>
+
+</table>
+
+<h3>Контакты</h3>
+<table class="table table-striped">
+    <tr><td>Страна расположения Головного офиса</td><td><span style="color:lightgray">Название страны</span></td></tr>
+    <tr><td>Юрисдикция</td><td>Название страны</td></tr>
+    <tr><td>Адрес Головного офиса</td><td><span style="color:lightgray">Город, улица, номер здания</span></td></tr>
+    <tr><td>Альтернативный офис</td><td><span style="color:lightgray">Город, улица, номер здания</span></td></tr>
+    <tr><td>URL</td><td><span style="color:lightgray">Текстовый блок</span></td></tr>
+    <tr><td>E-mails</td><td><span style="color:lightgray">Текстовый блок</span></td></tr>
+    <tr><td>Телефон</td><td><span style="color:lightgray">Текстовый блок</span></td></tr>
+</table>
+
+<h3>Инвестиционная политика и предпочтения</h3>
+
+<p>описание</p>
+
+<h4>Фонды</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название Фонда</th>
+            <th>Тип Фонда</th>
+            <th>Расположение</th>
+            <th>Год основания</th>
+            <th>Статус</th>
+            <th>Объем</th>
+            <th>IRR</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            <td><span style="color:lightgray">Текстовый блок с гиперссылкой</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Дата</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Число</span></td>
+            <td><span style="color:lightgray">Число</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Инвестиции</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название Компании</th>
+            <th>Год инвестиции</th>
+            <th>Стадия компании</th>
+            <th>Объем сделки</th>
+            <th>Отрасль</th>
+            <th>Страна</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span style="color:lightgray">Текстовый блок с гиперссылкой</span></td>
+            <td><span style="color:lightgray">Дата</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Число</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Выходы</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название Компании</th>
+            <th>Дата выхода</th>
+            <th>Объем выхода</th>
+            <th>Способ выхода</th>
+            <th>Тип выхода</th>
+            <th>Покупатели</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span style="color:lightgray">Текстовый блок с гиперссылкой</span></td>
+            <td><span style="color:lightgray">Дата</span></td>
+            <td><span style="color:lightgray">Число</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Новости</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Источник</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span style="color:lightgray">Текстовый блок</span></td>
+            <td><span style="color:lightgray">Гиперссылка</span></td>
+        </tr>
+    </tbody>
+</table>
+

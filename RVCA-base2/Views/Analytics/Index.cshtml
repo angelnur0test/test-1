@@ -1,0 +1,31 @@
+﻿@using EFDataLayer
+@using RVCA_base2.Controllers
+@model List<analytic>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="blog-box row">
+        <div class="blog-meta big-meta col-md-12">
+            <div class="date" style="margin-bottom:5px;">
+                <small>
+                    <b>@item.publicationDate.Value.ToString("dd.MM.yyyy")</b>
+                </small>
+            </div>
+            <h4><a href="/analytics/view/@item.id/"><b>@item.title</b></a></h4>
+            <p>
+                @if (item.fullContent.Length > 300)
+                {
+                    @Html.Raw(item.fullContent.Substring(0, 300)) @:...
+                }
+                else
+                {
+                    @Html.Raw(item.fullContent)
+                }
+            </p>
+        </div>
+    </div>
+    <br />
+
+}

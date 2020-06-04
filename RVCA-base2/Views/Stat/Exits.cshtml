@@ -1,0 +1,85 @@
+﻿@using RVCA_base2.Helpers
+@model  ExcelWorker.Excel_model_v3.ExcelStatPage
+@{
+    ViewBag.Title = "Статистика: Выходы с участием фондов";
+}
+<style>
+    select {
+        overflow: auto;
+    }
+
+    .no-transition {
+        transition: none !important;
+    }
+</style>
+
+<h2>Выходы с участием фондов PE&VC</h2>
+
+<div id="more-fields" class="row">
+    <form id="search-form" method="post" class="col-md-10" action="/stat/exits/">
+        <div>
+            <div class="row">
+                <div class="col-md-3" style="height:70px;">
+                    <div class="align-bottom" style="height:100px;">
+                        <div style="height:30px;font-weight:bold;">
+                            По типу фонда<br />
+                        </div>
+                        <select class="form-control" id="filter_fundType" name="filter_fundType">
+                            <option value="PEVC" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundType", "PEVC", true)>PE и VC фонды</option>
+                            <option value="PE" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundType", "PE")>PE-фонды</option>
+                            <option value="VC" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_fundType", "VC")>VC-фонды</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:70px;">
+                    <div class="form-group">
+                        <div style="height:30px;font-weight:bold;">
+                            По отраслям (компаний)<br />
+                        </div>
+                        <select class="form-control" id="filter_Otrasl" name="filter_Otrasl">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Otrasl", "1")>Да</option>
+                            <option value="2" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Otrasl", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:70px;">
+                    <div class="form-group">
+                        <div style="height:30px;font-weight:bold;">
+                            По способу выхода<br />
+                        </div>
+                        <select class="form-control" id="filter_Exit" name="filter_Exit">
+                            <option value="1" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Exit", "1")>Да</option>
+                            <option value="2" @PageBuilderHelper.IsValueSelected(ViewBag.SearchParmeters, "filter_Exit", "2", true)>Нет</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="search-element">
+                    <button type="submit" class="btn btn-primary">Показать</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        //$("#fund_type").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_fundType").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_Otrasl").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#filter_Exit").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+    });
+
+</script>
+<br />
+<br />
+<div id="more-fields" class="row">
+    @if (Model != null)
+    {
+        ExcelWorker.Excel_model_v3.ExcelStatPage data = (Model as ExcelWorker.Excel_model_v3.ExcelStatPage);
+        @Html.Partial("Page", data);
+    }
+</div>
+

@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Exits";
+
+    string fields = ViewBag.searchResultFields;
+    string tableName = ViewBag.tableName;
+    string rowTableId = "search-results-table";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/data-table.js"></script>
+<script src="~/Scripts/search-tables.js"></script>
+
+<h2>Выходы</h2>
+
+<form id="search-form" class="col-md-12" onsubmit="return false">
+    <div class="container">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="company-name">Название компании содержит</label><br />
+                <input type="text" class="form-control" id="company-name" name="Название компании">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Год</label>
+                <select class="form-control" id="period" name="Год выхода">
+                    <option value=""></option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="region">Регион</label>
+                <select class="form-control" id="region" name="Регион">
+                    <option value=""></option>
+                    <option value="Центральный">Центральный</option>
+                    <option value="Северо-Западный">Северо-Западный</option>
+                    <option value="Приволжский">Приволжский</option>
+                    <option value="Южный">Южный</option>
+                    <option value="Северо-Кавказский">Северо-Кавказский</option>
+                    <option value="Уральский">Уральский</option>
+                    <option value="Сибирский">Сибирский</option>
+                    <option value="Дальневосточный">Дальневосточный</option>
+                    @*<option value="Неизвестно">Неизвестно</option>*@
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="search-element">
+                <button class="btn btn-primary" onclick="submitForm('@tableName','@rowTableId','@fields')">Показать</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="col-md-12" style="margin-top:30px; margin-bottom:30px">
+    <table id="@rowTableId" class="display" style="width:100%"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        submitForm('@tableName','@rowTableId','@fields');
+    });
+</script>
+
+
+

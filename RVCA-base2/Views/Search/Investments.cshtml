@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Investments";
+
+    string fields = ViewBag.searchResultFields;
+    string tableName = ViewBag.tableName;
+    string rowTableId = "search-results-table";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/data-table.js"></script>
+<script src="~/Scripts/search-tables.js"></script>
+
+<h2>Сделки</h2>
+<div class="col-md-12" style="margin-top:15px;margin-bottom:15px;">
+    <a href="javascript:showHideAdditionalFields()">Показать/скрыть фильтры</a>
+</div>
+
+<div id="more-fields" style=" display:none">
+    <form id="search-form" class="col-md-10" onsubmit="return false">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="project-name">Название Проекта</label><br />
+                        <input type="text" class="form-control" id="project-name" name="Название проекта">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="investor-name">Название Инвестора</label><br />
+                        <input type="text" class="form-control" id="investor-name" name="Название инвестора">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="fund-name">Год инвестиции от</label><br />
+                        <input type="text" class="form-control" id="invest-count1" name="Дата сделки__from"> до
+                        <input type="text" class="form-control" id="invest-count2" name="Дата сделки__to">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="region">Стадия развития</label>
+                        <select class="form-control" id="stages" name="Стадия развития" multiple>
+                            <option value="Посевная">Посевная</option>
+                            <option value="Начальная">Начальная</option>
+                            <option value="Ранняя">Ранняя</option>
+                            <option value="Расширение">Расширение</option>
+                            <option value="Поздняя">Поздняя</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="region">Отрасль</label>
+                        <select class="form-control" id="otrasl" name="Отрасль" multiple>
+                            <option value="Сельское хозяйство">Сельское хозяйство</option>
+                            <option value="Финансовые услуги">Финансовые услуги</option>
+                            <option value="Потребительский рынок">Потребительский рынок</option>
+                            <option value="Химические материалы">Химические материалы</option>
+                            <option value="Экология">Экология</option>
+                            <option value="Энергетика">Энергетика</option>
+                            <option value="Телекоммуникации">Телекоммуникации</option>
+                            <option value="Компьютеры">Компьютеры</option>
+                            <option value="Биотехнологии">Биотехнологии</option>
+                            <option value="Медицина">Медицина</option>
+                            <option value="Промышленное оборудование">Промышленное оборудование</option>
+                            <option value="Строительство">Строительство</option>
+                            <option value="Транспорт">Транспорт</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="region">Регион</label>
+                        <select class="form-control" id="region" name="Регион" multiple>
+                            <option value="Центральный">Центральный</option>
+                            <option value="Северо-Западный">Северо-Западный</option>
+                            <option value="Приволжский">Приволжский</option>
+                            <option value="Южный">Южный</option>
+                            <option value="Северо-Кавказский">Северо-Кавказский</option>
+                            <option value="Уральский">Уральский</option>
+                            <option value="Сибирский">Сибирский</option>
+                            <option value="Дальневосточный">Дальневосточный</option>
+                            <option value="Неизвестно">Неизвестно</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="search-element">
+                    <button class="btn btn-primary" onclick="submitForm('@tableName','@rowTableId','@fields'); showHideAdditionalFields();">Показать</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="col-md-12" style="margin-top:30px; margin-bottom:30px">
+    <table id="@rowTableId" class="display" style="width:100%"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#stages").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#otrasl").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        $("#region").chosen({ no_results_text: "Ничего не найдено!", width: "99%" });
+        submitForm('@tableName','@rowTableId','@fields');
+    });
+
+    function showHideAdditionalFields()
+    {
+        if ($('#more-fields').is(':visible')) { $('#more-fields').hide(); } else { $('#more-fields').show()}
+    }
+</script>
+
+
+

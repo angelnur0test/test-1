@@ -1,0 +1,118 @@
+﻿@using RVCA_base2.Models;
+@model CabinetUkData
+@{
+    ViewBag.Title = "Личный кабинет УК";
+}
+
+<style>
+    .dataTables_paginate {
+        display: none;
+    }
+
+    .dataTables_info {
+        display: none;
+    }
+
+    td {
+        padding-bottom: 10px !important;
+    }
+
+    @@media screen and (max-width: 650px) {
+
+        table.controlsTable {
+            border: 0;
+        }
+
+
+
+            table.controlsTable thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+
+
+            table.controlsTable tr {
+                display: block !important;
+                margin-bottom: .625em;
+            }
+
+
+
+            table.controlsTable td {
+                display: block;
+                text-align: left;
+            }
+
+
+
+                table.controlsTable td::before {
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+
+
+
+                table.controlsTable td:last-child {
+                    border-bottom: 0;
+                }
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var href = "@ViewData["postHref"]";
+        debugger
+    var splitit = (href.split('#'))[1];
+    if(splitit !== "" || splitit !== "undefined"){
+        $('#page-wrapper').animate({
+            scrollTop: $('#'+splitit).offset().top-50
+        }, 2000);
+    }
+});
+</script>
+<div id="CabinetPage">
+    <link href="/Content/level4.css" rel="stylesheet" />
+    <h4 id="summary">Summary</h4>
+    <span style="float:left;"><a href="/cabinet/uk/@Model.id/editsummary/" title="Редактировать" class="btn btn-success"><i class="fa fa-edit"></i></a></span>
+    <br />
+    <br />
+    <table class="controlsTable table-striped" width="100%" style="border:1px solid green">
+        <tr>
+            <td class="col-sm-3"><b>Название:</b></td>
+            <td class="col-sm-3">@Model.Title</td>
+
+            <td class="col-sm-3"><b>Описание:</b></td>
+            <td class="col-sm-3">@Model.Description</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Год основания:</b></td>
+            <td class="col-sm-3">@Model.FoundationDate</td>
+
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+    </table>
+    <br />
+    <h4 id="details">Подробная информация</h4>
+    <span style="float:left;"><a href="/cabinet/uk/@Model.id/editdetails/" title="Редактировать" class="btn btn-success"><i class="fa fa-edit"></i></a></span>
+    <br />
+    <br />
+    <table class="controlsTable table-striped" width="100%">
+        <tr>
+            <td class="col-sm-3"><b>Страна расположения головного офиса:</b></td>
+            <td class="col-sm-3">@Model.HeadOfficeCountry</td>
+
+            <td class="col-sm-3"><b>Юрисдикция:</b></td>
+            <td class="col-sm-3">@Model.Jurisdiction</td>
+        </tr>
+    </table>
+    <br />
+</div>

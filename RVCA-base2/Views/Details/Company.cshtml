@@ -1,0 +1,254 @@
+﻿@model System.Data.DataRow
+@using RVCA_base2.Models
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Проект";
+
+}
+
+@if (Model == null)
+{
+    <p class="bg-warning" style="padding: 15px">Данные по инвестору не найдены</p>
+}
+else
+{
+
+    <link href="/Content/level4.css" rel="stylesheet" />
+
+    <h1 class="page-header">Компания</h1>
+
+    <p class="alert alert-info">Страница находится в разработке</p>
+
+
+    <h2>@Model["Название компании"]</h2>
+
+    <h3>Основные сведения</h3>
+    <table class="table table-striped">
+        <tr><td>Наименование поля</td><td><span style="color:lightgray">Формат данных</span></td></tr>
+        <tr><td>Описание</td><td><span style="color:lightgray">Текстовое поле</span></td></tr>
+        <tr><td>Сайт</td><td><span style="color:lightgray">Текстовое поле</span></td></tr>
+        <tr><td>Тип деятельности</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Юридическое название</td><td><span style="color:lightgray">Текстовое поле</span></td></tr>
+        <tr><td>Юрисдикция</td><td><span style="color:lightgray">Текстовое поле</span></td></tr>
+        <tr><td>Год основания</td><td><span style="color:lightgray">Календарная дата (год)</span></td></tr>
+        <tr><td>Отрасль</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Статус поддержки</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Статус владения</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Бизнес-статус</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Финансовый статус</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Вселенная</td><td><span style="color:lightgray">Текст из закрытого списка</span></td></tr>
+        <tr><td>Всего получено инвестиций</td><td><span style="color:lightgray">Число</span></td></tr>
+    </table>
+
+    <h3>Контакты</h3>
+    <table class="table table-striped">
+        <tr><td>Главный контакт</td><td><span style="color:lightgray">Список</span></td></tr>
+        <tr><td>Головной офис </td><td><span style="color:lightgray">Список</span></td></tr>
+        <tr><td>Филиалы</td><td><span style="color:lightgray">Список</span></td></tr>
+
+    </table>
+
+    <h3>Похожие компании</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Конкурент</th>
+                <th>Финансовый статус</th>
+                <th>Расположение головного офиса</th>
+                <th>Последняя дата инвестиций</th>
+                <th>Последний объем инвестиций</th>
+                <th>Оценка</th>
+                <th>Поднято на дату</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст из закрытого списка</span></td>
+                <td><span style="color:lightgray">Страна, город</span></td>
+                <td><span style="color:lightgray">Дата</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Руководство</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Имя Фамилия</th>
+                <th>Должность</th>
+                <ht>Места в совете директоров</ht>
+                <th>Офис</th>
+                <th>Контакты</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Страна, город</span></td>
+                <td><span style="color:lightgray">Список</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Члены совета директоров или наблюдательного совета</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Должность</th>
+                <th>Представляет</th>
+                <th>Позиция</th>
+                <th>Местоположение</th>
+                <th>Сделка</th>
+                <th>Контакты</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Список</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>История сделок</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Тип сделки</th>
+                <th>Дата сделки</th>
+                <th>Объем сделки</th>
+                <th>Поднято на момент сделки</th>
+                <th>Pre-val</th>
+                <th>Post-val</th>
+                <th>Статус</th>
+                <th>Стадия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Текст из закрытого списка</span></td>
+                <td><span style="color:lightgray">Дата</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Текст из закрытого списка</span></td>
+                <td><span style="color:lightgray">Текст из закрытого списка</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Сделки</h4>
+    <h5>№ сделки</h5>
+    <table class="table table-striped">
+        <tr><td>Описание сделки</td><td><span style="color:lightgray">Текст</span></td></tr>
+        <tr><td>Дата сделки</td><td><span style="color:lightgray">Дата</span></td></tr>
+        <tr><td>Объем сделки</td><td><span style="color:lightgray">Цифра</span></td></tr>
+        <tr><td>Стадия компании</td><td><span style="color:lightgray">Текст</span></td></tr>
+        <tr><td>Номер раунда</td><td><span style="color:lightgray">Текст</span></td></tr>
+        <tr><td>Тип сделки</td><td><span style="color:lightgray">Список</span></td></tr>
+        <tr><td>Инвесторы</td><td><span style="color:lightgray">Список</span></td></tr>
+        <tr><td>Продавец</td><td><span style="color:lightgray">Список</span></td></tr>
+        <tr><td>Статус сделки</td><td><span style="color:lightgray">Список</span></td></tr>
+        <tr><td>Всего проинвестировано на момент сделки</td><td><span style="color:lightgray">Цифра</span></td></tr>
+        <tr><td>Синдицированная</td><td><span style="color:lightgray">Да/Нет</span></td></tr>
+        <tr><td>Follow-on</td><td><span style="color:lightgray">Да/Нет</span></td></tr>
+        <tr><td>Поставщики услуг</td><td><span style="color:lightgray">Текст</span></td></tr>
+    </table>
+
+    <h3>Инвесторы</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>Наименование</th>
+                <th>Тип инвестора</th>
+                <th>Доля</th>
+                <th>Дата первого входа</th>
+                <th>В совете директоров</th>
+                <th>Сделки</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Дата</span></td>
+                <td><span style="color:lightgray">Да/нет</span></td>
+                <td><span style="color:lightgray">№ сделки, стадия, дата, объем</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Ключевые партнер по сделкам</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Число сделок</th>
+                <th>Должность</th>
+                <th>Представитель</th>
+                <th>Сделки</th>
+                <th>Контакты</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Число</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">Текст</span></td>
+                <td><span style="color:lightgray">№ сделки, стадия, дата, объем</span></td>
+                <td><span style="color:lightgray">Телефон, e-mail, соцсети</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Финансовые показатели</h3>
+    <h4>TTM/Финансовый год</h4>
+    <table class="table table-striped">
+        <tr><td>Показатель</td><td>	Общий доход	</td><td><span style="color:lightgray">	Число	</span></td></tr>
+        <tr><td>Источник информации</td><td>	Preliminary	</td><td><span style="color:lightgray">	Да/Нет	</span></td></tr>
+        <tr><td>Источник информации</td><td>	Original	</td><td><span style="color:lightgray">	Да/Нет	</span></td></tr>
+        <tr><td>Источник информации</td><td>	Restated	</td><td><span style="color:lightgray">	Да/Нет	</span></td></tr>
+        <tr><td>Источник информации</td><td>	Calculated	</td><td><span style="color:lightgray">	Да/Нет	</span></td></tr>
+    </table>
+
+    <h3>Новости</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Источник</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span style="color:lightgray">Текстовый блок</span></td>
+                <td><span style="color:lightgray">Гиперссылка</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+}

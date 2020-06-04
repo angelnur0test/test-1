@@ -1,0 +1,26 @@
+﻿@model ExcelWorker.Excel_model_v3.StatText
+
+@if (Model != null)
+{
+    switch (Model.type)
+    {
+        case "h1":
+            <h1>@Model.text</h1>
+            break;
+        case "h2":
+            <h2>@Model.text</h2>
+            break;
+        case "h3":
+            <h3>@Model.text</h3>
+            break;
+        case "p":
+            <p>@Model.text</p>
+            break;
+        default:
+            <div>@Model.text</div>
+            break;
+
+    }
+
+
+}

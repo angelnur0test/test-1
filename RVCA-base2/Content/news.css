@@ -1,0 +1,141 @@
+﻿.hovereffect {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2);
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    zoom: 1;
+    filter: alpha(opacity=0);
+    opacity: 0.5;
+    background: -moz-linear-gradient(0deg,rgba(0,0,0,1) 0%,rgba(0,0,0,0.1) 50%);
+    background: -webkit-linear-gradient(0deg,rgba(0,0,0,1) 0%,rgba(0,0,0,0.1) 50%);
+    background: linear-gradient(0deg,rgba(0,0,0,1) 0%,rgba(0,0,0,0.1) 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000',endColorstr='#00000000',GradientType=1)
+}
+
+.post-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.post-media img {
+    width: 100%;
+}
+
+.post-media:hover .hovereffect span::before, .post-media:hover .hovereffect {
+    visibility: visible;
+    zoom: 1;
+    filter: alpha(opacity=100);
+    opacity: 1
+}
+
+.hovereffect span::before {
+    width: 90px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 45%;
+    margin: -2rem auto;
+    visibility: hidden;
+    position: absolute;
+    height: 90px;
+    display: block;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    zoom: 1;
+    filter: alpha(opacity=0);
+    opacity: 0
+}
+
+.post-media img, .masonry-box img {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1)
+}
+
+.post-media:hover img, .masonry-box:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1)
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto
+}
+
+.blog-list .blog-meta.big-meta h4 {
+    margin-left: -20%;
+    margin-top: 1rem;
+    background-color: #fff;
+    padding: 1rem 1.5rem 1rem;
+}
+
+.blog-meta{
+    padding:0px !important;
+    padding-top:10px !important;
+    margin: 0px;
+}
+
+.blog-meta.big-meta h4 {
+    font-size: 16px;
+    margin:0px;
+    margin-bottom:5px !important;
+}
+
+
+.blog-meta.big-meta p {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.blog-meta.big-meta a:hover {
+    text-decoration: none;
+}
+
+.blog-meta .bg-orange {
+    color: #fff !important;
+    padding: 0 0.8rem;
+    border-radius: 3px;
+}
+
+.bg-orange {
+    background-color: #FF6347 !important;
+}
+
+    .blog-meta small {
+        font-size: 12px;
+        display: inline-block;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        color: #111111;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 0.5rem;
+    }

@@ -1,0 +1,51 @@
+﻿@model ExcelWorker.Excel_model_v3.MenuTree
+@{
+    ViewBag.Title = "Stat";
+}
+
+
+<style>
+    .menu a {
+        text-decoration: none;
+    }
+
+    .menu ul {
+        list-style-type: none;
+        padding-left: 25px;
+    }
+
+    .menu li {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .menu-title {
+        margin-top: 15px;
+        font-size: x-large;
+    }
+
+    .gray-element {
+        color: gray
+    }
+</style>
+
+<div  class="menu" style="margin-top:30px">
+    @{
+        DateTime lastModified = ViewBag.lastModifiedDate;
+    }
+
+    <h1 class="page-header">Отчеты</h1>
+    <p  class="bg-info" style="padding: 15px">Дата последнего обновления данных: @lastModified.ToString("dd.MM.yyyy HH:mm")</p>
+    @if (Model.subNodes.Count > 0)
+    {
+        <ul>
+            @foreach (var node in Model.subNodes)
+            {
+                <li>
+                    @Html.Partial("MenuLevelView", node)
+                </li>
+            }
+        </ul>
+    }
+</div>
+

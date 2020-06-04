@@ -1,0 +1,39 @@
+﻿@model CabinetUkData
+@using RVCA_base2.Models
+
+@{
+    ViewBag.Title = "MC";
+
+
+    System.Data.DataRow[] oldFunds = ViewBag.oldFunds;
+    System.Data.DataRow[] curFunds = ViewBag.curFunds;
+
+}
+
+@if (Model == null)
+{
+    <p class="bg-warning" style="padding: 15px">Данные по инвестору не найдены</p>
+}
+else
+{
+
+    <link href="/Content/level4.css" rel="stylesheet" />
+
+    <h1 class="page-header">Управляющая компания</h1>
+
+    <p class="alert alert-info">Страница находится в разработке</p>
+
+    <h2>@Model.Title</h2>
+
+    <h3>Общая информация</h3>
+    <table class="table table-striped">
+        <tr><td>Название</td><td><span>@Model.Title</span></td></tr>
+        <tr><td>Описание</td><td><span>@Model.Description</span></td></tr>
+    </table>
+
+    <h3>Контакты</h3>
+    <table class="table table-striped">
+        <tr><td>Страна расположения Головного офиса</td><td><span>@Model.HeadOfficeCountry</span></td></tr>
+        <tr><td>Юрисдикция</td><td><span>@Model.Jurisdiction</span></td></tr>
+    </table>
+}
